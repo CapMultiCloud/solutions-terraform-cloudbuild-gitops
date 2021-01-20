@@ -24,8 +24,20 @@ steps:
       echo "$BRANCH_NAME"
       echo "***********************"
 
+- name: 'gcr.io/cloud-builders/docker'
+  dir: '/'
+  entrypoint: 'bash'
+  args: 
+  - '-c'
+  - |
+    sed -i 's/_ENV_/$BRANCH_NAME/g' workspace/modules/run/source/index.js
+    cat workspace/modules/run/source/index.js
+    docker build -t eu.gcr.io/cap-multicloud-$BRANCH_NAME/gcr/creditwebapp workspace/modules/run/source
+    docker push eu.gcr.io/cap-multicloud-$BRANCH_NAME/gcr/creditwebapp
+        
+
 - id: 'tf init'
-  name: 'hashicorp/terraform:0.11.14'
+  name: hashicorp/terraform:latest
   entrypoint: 'sh'
   args: 
   - '-c'
@@ -50,7 +62,7 @@ steps:
 
 # [START tf-plan]
 - id: 'tf plan'
-  name: 'hashicorp/terraform:0.11.14'
+  name: hashicorp/terraform:latest
   entrypoint: 'sh'
   args: 
   - '-c'
@@ -76,7 +88,7 @@ steps:
 
 # [START tf-apply]
 - id: 'tf apply'
-  name: 'hashicorp/terraform:0.11.14'
+  name: hashicorp/terraform:latest
   entrypoint: 'sh'
   args: 
   - '-c'
@@ -89,4 +101,17 @@ steps:
         echo "Branch '$BRANCH_NAME' does not represent an oficial environment."
         echo "*******************************************************************************"
       fi
-# [END tf-apply]      
+# [END tf-apply]   
+
+# [START gcloud beta]
+- id: 'gcloud beta'
+  name: gcr.io/cloud-builders/gcloud
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+        echo "Generating Workflows"
+        export release_pwd='pwd'
+        echo "Directory is : $release_pwd"
+        gcloud beta workflows deploy credit-validation-workflow --location=us-central1 --service-account=projects/cap-multicloud-test/serviceAccounts/cap-multicloud-test@cap-multicloud-test.iam.gserviceaccount.com --source=modules/workflows/workflow.yaml
+# [END gcloud beta]   
