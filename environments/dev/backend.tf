@@ -15,7 +15,7 @@
 
 terraform {
   backend "gcs" {
-    bucket = "cap-multicloud-dev-tfstate"
+    bucket = "cap-cloud-dev-tfstate"
     prefix = "env/dev"
   }
 }
