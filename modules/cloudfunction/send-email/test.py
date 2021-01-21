@@ -7,12 +7,12 @@ from sendgrid.helpers.mail import Mail
 #print(json_obj)
 
 #client_email = json_obj['client_email']
-client_email = 'cap.multicloud@gmail.com'
+client_email = 'cap.cloud.01@gmail.com'
 if len(client_email) == 0:
     print("No email set")
     exit()
 
-from_email = 'cap.multicloud@gmail.com'
+from_email = 'cap.cloud.01@gmail.com'
 subject = 'cenas'
 html_content = 'cenas'
 

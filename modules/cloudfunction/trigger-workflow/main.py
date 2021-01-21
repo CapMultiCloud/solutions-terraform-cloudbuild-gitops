@@ -6,7 +6,7 @@ import requests
 import httplib2
 
 # Project ID for this request.
-project = 'cap-multicloud-dev'
+project = 'cap-cloud-dev'
 
 # The name of the zone for this request.
 zone = 'us-central1'
@@ -15,7 +15,7 @@ zone = 'us-central1'
 workflow = 'workflow-2'
 
 # Service Account Credentials, Json format
-json_filename = 'cap-multicloud-dev-172e6d4002cc.json'
+json_filename = 'cap-cloud-dev-172e6d4002cc.json'
 
 # Permissions to request for Access Token
 scopes = "https://www.googleapis.com/auth/cloud-platform"

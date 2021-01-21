@@ -1,5 +1,5 @@
 output "cf_sa" {
-  value = "${google_service_account.cap_multicloud_sa.email}"
+  value = "${google_service_account.cap_cloud_sa.email}"
 }
 
 output "mig_sa" {

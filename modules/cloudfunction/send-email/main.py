@@ -21,7 +21,7 @@ def send_email(event, context):
 
     result = json_obj['data']['output']
     print(result)
-    from_email = 'cap.multicloud@gmail.com'
+    from_email = 'cap.cloud.01@gmail.com'
     
     subject = 'cenas'
     html_content = 'cenas'

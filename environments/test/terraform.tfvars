@@ -1,1 +1,1 @@
-project="cap-multicloud-test"
+project="cap-cloud-test"

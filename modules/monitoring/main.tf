@@ -154,7 +154,7 @@ resource "google_monitoring_notification_channel" "cap_notification_email" {
   enabled      = "true"
 
   labels = {
-    email_address = "cap.multicloud@gmail.com"
+    email_address = "cap.cloud.01@gmail.com"
   }
 
   type    = "email"
